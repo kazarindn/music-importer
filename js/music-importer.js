@@ -11,6 +11,7 @@ window.onload = function(){
 		var checked = $("input:checked");
 
 		resetPlaylist();
+		loadedPlaylists = {};
 		if(validate() === false) return;
 		
 		startLoader();
