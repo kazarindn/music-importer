@@ -6,15 +6,11 @@ var lastfmApiKey = "152353e5ff3561e1d1772715194945ee";
 function importData(username){
 	console.log('Importing from last.fm...');
 	var client = new XMLHttpRequest();
-	client.onerror = errorHandler;
+	client.onerror = requestErrorHandler;
 	client.onreadystatechange = lastfmHandler;
 	client.open("GET", "http://ws.audioscrobbler.com/2.0/?method=user.getlovedtracks&user=" + 
 		username + "&api_key=" + lastfmApiKey + "&limit=0&format=json");
 	client.send();
-}
-
-function errorHandler(e){
-	showErrorMessage(e.target.status);
 }
 
 function lastfmHandler() {

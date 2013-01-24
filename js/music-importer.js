@@ -81,13 +81,18 @@ function addNewPermanentPlaylist(id){
 	};
 }
 
+function requestErrorHandler(){
+	showErrorMessage("Something went wrong, try again later...");
+	stopLoader();
+}
+
 function startLoader(){
 	document.getElementById('error').innerHTML = '<div id="loader"></div>';
 }
 
 function stopLoader(){
 	var element = document.getElementById('loader');
-	element.parentNode.removeChild(element);
+	if(element) element.parentNode.removeChild(element);
 }
 
 function showErrorMessage(message){

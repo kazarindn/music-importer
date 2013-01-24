@@ -17,7 +17,8 @@
 	  "resources": "0.2.2"
   },"RequiredInterface": 1,
 	"RequiredPermissions": [
-	    "http://ws.audioscrobbler.com/"
+	    "http://ws.audioscrobbler.com/",
+	    "http://api.deezer.com/"
 	],
 	"SupportedLanguages": [
 		"en"
