@@ -68,17 +68,15 @@ function generateTemporaryPlaylist(tracks, playlistName){
 	$('#'+ id).append(list.node);
 
 	stopLoader();
-	for (var i = 0; i < tracks.length; i++) {
+	for (var i = 0; i < tracks.length; i++)
 		searchTrack(tracks[i].name, tracks[i].artist, tempPlayList, id);
-	};
 }
 
 function addNewPermanentPlaylist(id){
 	var tracks = loadedPlaylists[id];
 	var newPlaylist = new models.Playlist($('#'+id+'_name').text());
-	for (var i = 0; i < tracks.length; i++) {
+	for (var i = 0; i < tracks.length; i++)
 		newPlaylist.add(tracks[i]);
-	};
 }
 
 function requestErrorHandler(){
@@ -87,27 +85,23 @@ function requestErrorHandler(){
 }
 
 function startLoader(){
-	document.getElementById('error').innerHTML = '<div id="loader"></div>';
+	$('#error').html('<div id="loader"></div>');
 }
 
 function stopLoader(){
-	var element = document.getElementById('loader');
-	if(element) element.parentNode.removeChild(element);
+	$('#loader').remove();
 }
 
 function showErrorMessage(message){
-	var div = document.getElementById('error');
-	div.innerHTML = message;
+	$('#error').text(message);
 }
 
 function clearErrorMessage(){
-	var div = document.getElementById('error');
-	div.innerHTML = '';
+	$('#error').text('');
 }
 
 function resetPlaylist(){
-	var div = document.getElementById('playlists');
-	div.innerHTML = '';
+	$('#playlists').text('');
 }
 
 function trim(str) {
