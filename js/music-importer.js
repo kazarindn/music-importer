@@ -33,7 +33,7 @@ function init(){
 
 function validate()
 {
-	clearErrorMessage('lastfmErrror');
+	clearErrorMessage();
 	if(!document.getElementById('username').value 
 		|| trim(document.getElementById('username').value).length == 0)
 	{
