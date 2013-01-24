@@ -32,7 +32,7 @@ function lastfmHandler() {
 			return;
 		}
 		var tracks = parseLastfmTracks(response.lovedtracks.track);
-		generateTemporaryPlaylist(tracks, 'Music Importer - Last.fm Loved Tracks');	
+		generateTemporaryPlaylist(tracks, 'Last.fm - Loved Tracks');	
 	}
 }
 
