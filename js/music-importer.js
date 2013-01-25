@@ -6,16 +6,12 @@ var serviceLinks = [];
 var loadedPlaylists = {};
 
 window.onload = function(){
-	init();
-	$('#import').click(startImport);
-};
-
-function init(){
 	for (var i = 0; i < services.length; i++) {
 		var script = sp.require('/js/' + services[i]);
 		serviceLinks.push(script);
 		console.log('Script added: ' + services[i]);
-		$('#header').append('<label for="' +services[i]+ '"><input class="service" id="' +services[i]+ '" type="radio" name="service" value="' +script.name+ '"/>' +script.name+ '</label>');
+		$('#header').append('<label for="' +services[i]+ '"><input class="service" id="' +services[i]+ '" type="radio" name="service" value="' +script.name+ '" onchange="javascript:showTip(\''+services[i]+'\',\''+script.tip+'\',\''+script.name+'\',\''+script.userInput+'\');"></input>' +script.name+ '</label>');
+		
 	};
 
 	$('#username').keypress(function (e) {
@@ -23,19 +19,31 @@ function init(){
 	    startImport();
 	});
 
+	//set default values
 	$('#' + services[0]).attr('checked', true);
+	showTip(services[0], serviceLinks[0].tip, serviceLinks[0].name, serviceLinks[0].userInput);
+
+	$('#import').click(startImport);
+};
+
+function showTip(id, tip, serviceName, userInput){
+	if ($('#'+id).is(':checked')) {
+    	$('#tip').text(tip);
+    	$('#import').text('Import from ' + serviceName);
+    	$('#title').text(userInput);
+    }
 }
 
 function startImport(){
 	var checked = $("input:checked");
 
-		resetPlaylist();
-		loadedPlaylists = {};
-		if(validate() === false) return;
-		
-		startLoader();
+	resetPlaylist();
+	loadedPlaylists = {};
+	if(validate() === false) return;
+	
+	startLoader();
 
-		serviceLinks[services.indexOf(checked[0].id)].importData($('#username').val());
+	serviceLinks[services.indexOf(checked[0].id)].importData($('#username').val());
 }
 
 function validate()
@@ -44,7 +52,7 @@ function validate()
 	if(!document.getElementById('username').value 
 		|| trim(document.getElementById('username').value).length == 0)
 	{
-		showErrorMessage("Username is empty");
+		showErrorMessage("Input field is empty");
 		return false;
 	}
 	return true;

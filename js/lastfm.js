@@ -1,4 +1,6 @@
 exports.name = 'last.fm';
+exports.userInput = "Username";
+exports.tip = "e.g. kazarindn in http://www.last.fm/user/kazarindn";
 exports.importData = importData;
 
 var lastfmApiKey = "152353e5ff3561e1d1772715194945ee";
@@ -11,19 +13,19 @@ function importData(username){
 }
 
 function lastfmHandler(response) {
-		if(typeof response.error !== "undefined") {
-			showErrorMessage("Something went wrong, try again later");
-			stopLoader();
-			return;
-		}
+	if(typeof response.error !== "undefined") {
+		showErrorMessage("Something went wrong, try again later");
+		stopLoader();
+		return;
+	}
 
-		if(response.lovedtracks.total == 0) {
-			showErrorMessage("This user doesn't have any loved tracks");
-			stopLoader();
-			return;
-		}
-		var tracks = parseLastfmTracks(response.lovedtracks.track);
-		generateTemporaryPlaylist(tracks, 'Last.fm - Loved Tracks', "/img/lastfm.png");	
+	if(response.lovedtracks.total == 0) {
+		showErrorMessage("This user doesn't have any loved tracks");
+		stopLoader();
+		return;
+	}
+	var tracks = parseLastfmTracks(response.lovedtracks.track);
+	generateTemporaryPlaylist(tracks, 'Last.fm - Loved Tracks', "/img/lastfm.png");	
 }
 
 function parseLastfmTracks(tracks){

@@ -1,4 +1,6 @@
 exports.name = "Deezer";
+exports.userInput = "User ID";
+exports.tip = "e.g. 19477031 in http://www.deezer.com/en/profile/19477031";
 exports.importData = importData;
 
 function importData(username){
