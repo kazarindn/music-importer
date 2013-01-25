@@ -23,7 +23,7 @@ function deezerPlaylistResponseHandler(response) {
 		return;
 
 	var tracks = parseDeezerTracks(response.tracks.data);
-	generateTemporaryPlaylist(tracks, 'Deezer - ' + response.title);
+	generateTemporaryPlaylist(tracks, 'Deezer - ' + response.title, response.picture);
 }
 
 function parseDeezerTracks(deezerTracks){

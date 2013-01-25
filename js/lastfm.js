@@ -23,7 +23,7 @@ function lastfmHandler(response) {
 			return;
 		}
 		var tracks = parseLastfmTracks(response.lovedtracks.track);
-		generateTemporaryPlaylist(tracks, 'Last.fm - Loved Tracks');	
+		generateTemporaryPlaylist(tracks, 'Last.fm - Loved Tracks', "/img/lastfm.png");	
 }
 
 function parseLastfmTracks(tracks){

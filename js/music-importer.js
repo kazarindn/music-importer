@@ -57,6 +57,8 @@ function searchTrack(name, artist, playlist, id){
 
 	search.observe(models.EVENT.CHANGE, function() {
 		if(search.tracks.length != 0){
+			if($('#' +id).parent().is(':hidden') === true)
+				$('#'+id).parent().show();
 			var track = search.tracks[0];
 			playlist.add(track.uri);
 			loadedPlaylists[id].push(track.uri);
@@ -66,12 +68,12 @@ function searchTrack(name, artist, playlist, id){
 	search.appendNext();
 }
 
-function generateTemporaryPlaylist(tracks, playlistName){
+function generateTemporaryPlaylist(tracks, playlistName, image){
 	var tempPlayList = new models.Playlist();
 	var list  = new views.List(tempPlayList);
 	var id = 'playlist_'+(new Date()).getTime();
 	loadedPlaylists[id]= [];
-	$('#playlists').append('<div class="playlist"><div><table><tr></tr><tr><text class="playlist-name" id="'+id+'_name">'+playlistName+'</text></br><button class="button icon add-playlist" onclick="javascript:addNewPermanentPlaylist(\''+id+'\');"><span class="plus"></span>Add as Playlist</button></tr></table></div><div id="'+id+'" class="sp-list" style="max-height:none;"></div></div>');
+	$('#playlists').append('<div class="playlist" hidden><div><table><tr><td><img width="150" height="150" src="'+image+'"><td class="playlist_title"><text class="playlist-name" id="'+id+'_name">'+playlistName+'</text></br><button class="button icon add-playlist add-playlist-margins" onclick="javascript:addNewPermanentPlaylist(\''+id+'\');"><span class="plus"></span>Add as Playlist</button></tr></table></div><div id="'+id+'" class="sp-list" style="max-height:none;"></div></div>');
 	$('#'+ id).append(list.node);
 
 	stopLoader();
