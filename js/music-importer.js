@@ -7,17 +7,7 @@ var loadedPlaylists = {};
 
 window.onload = function(){
 	init();
-	document.getElementById('import').onclick = function(){
-		var checked = $("input:checked");
-
-		resetPlaylist();
-		loadedPlaylists = {};
-		if(validate() === false) return;
-		
-		startLoader();
-
-		serviceLinks[services.indexOf(checked[0].id)].importData($('#username').val());
-	}
+	$('#import').click(startImport);
 };
 
 function init(){
@@ -28,7 +18,24 @@ function init(){
 		$('#header').append('<label for="' +services[i]+ '"><input class="service" id="' +services[i]+ '" type="radio" name="service" value="' +script.name+ '"/>' +script.name+ '</label>');
 	};
 
+	$('#username').keypress(function (e) {
+	  if (e.which == 13)
+	    startImport();
+	});
+
 	$('#' + services[0]).attr('checked', true);
+}
+
+function startImport(){
+	var checked = $("input:checked");
+
+		resetPlaylist();
+		loadedPlaylists = {};
+		if(validate() === false) return;
+		
+		startLoader();
+
+		serviceLinks[services.indexOf(checked[0].id)].importData($('#username').val());
 }
 
 function validate()
@@ -105,5 +112,5 @@ function resetPlaylist(){
 }
 
 function trim(str) {
-        return str.replace(/^\s+|\s+$/g,"");
+    return str.replace(/^\s+|\s+$/g,"");
 }
