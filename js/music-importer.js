@@ -81,7 +81,7 @@ function generateTemporaryPlaylist(tracks, playlistName, image){
 	var list  = new views.List(tempPlayList);
 	var id = 'playlist_'+(new Date()).getTime();
 	loadedPlaylists[id] = [];
-	$('#playlists').append('<div class="playlist" hidden><div><table><tr><td><img width="150" height="150" src="'+image+'"><td class="playlist_title"><text class="playlist-name" id="'+id+'_name">'+playlistName+'</text></br><button class="button icon add-playlist add-playlist-margins" id="button_'+id+'" onclick="javascript:addNewPermanentPlaylist(\''+id+'\');"><span class="plus"></span>Add as Playlist</button></tr></table></div><div id="'+id+'" class="sp-list" style="max-height:none;"></div></div>');
+	$('#playlists').append('<div class="playlist" hidden><div><table><tr><td><img width="150" height="150" src="'+image+'"><td class="playlist_title"><text class="playlist-name" id="'+id+'_name">'+playlistName+'</text></br><button class="button icon add-playlist" id="button_'+id+'" onclick="javascript:addNewPermanentPlaylist(\''+id+'\');"><span class="plus"></span>Add as Playlist</button></tr></table></div><div id="'+id+'" class="sp-list" style="max-height:none;"></div></div>');
 	$('#'+ id).append(list.node);
 
 	stopLoader();
