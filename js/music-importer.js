@@ -15,7 +15,7 @@ window.onload = function(){
 	};
 
 	$('#username').keypress(function (e) {
-	  if (e.which == 13)
+	  if (e.which === 13)
 	    startImport();
 	});
 
@@ -50,7 +50,7 @@ function validate()
 {
 	clearErrorMessage();
 	if(!document.getElementById('username').value 
-		|| trim(document.getElementById('username').value).length == 0)
+		|| $.trim(document.getElementById('username').value).length == 0)
 	{
 		showErrorMessage("Input field is empty");
 		return false;
@@ -64,7 +64,7 @@ function searchTrack(name, artist, playlist, id){
 	search.localResults = models.LOCALSEARCHRESULTS.APPEND;
 
 	search.observe(models.EVENT.CHANGE, function() {
-		if(search.tracks.length != 0){
+		if(search.tracks.length !== 0){
 			if($('#' +id).parent().is(':hidden') === true)
 				$('#'+id).parent().show();
 			var track = search.tracks[0];
@@ -80,7 +80,7 @@ function generateTemporaryPlaylist(tracks, playlistName, image){
 	var tempPlayList = new models.Playlist();
 	var list  = new views.List(tempPlayList);
 	var id = 'playlist_'+(new Date()).getTime();
-	loadedPlaylists[id]= [];
+	loadedPlaylists[id] = [];
 	$('#playlists').append('<div class="playlist" hidden><div><table><tr><td><img width="150" height="150" src="'+image+'"><td class="playlist_title"><text class="playlist-name" id="'+id+'_name">'+playlistName+'</text></br><button class="button icon add-playlist add-playlist-margins" id="button_'+id+'" onclick="javascript:addNewPermanentPlaylist(\''+id+'\');"><span class="plus"></span>Add as Playlist</button></tr></table></div><div id="'+id+'" class="sp-list" style="max-height:none;"></div></div>');
 	$('#'+ id).append(list.node);
 
@@ -91,7 +91,7 @@ function generateTemporaryPlaylist(tracks, playlistName, image){
 
 function addNewPermanentPlaylist(id){
 	$('#button_'+id).hide();
-	setTimeout(function(){$('#button_'+id).show();}, '2000');
+	setTimeout(function(){$('#button_'+id).show();}, 2000);
 	var tracks = loadedPlaylists[id];
 	var newPlaylist = new models.Playlist($('#'+id+'_name').text());
 	for (var i = 0; i < tracks.length; i++)
@@ -121,8 +121,4 @@ function clearErrorMessage(){
 
 function resetPlaylist(){
 	$('#playlists').text('');
-}
-
-function trim(str) {
-    return str.replace(/^\s+|\s+$/g,"");
 }

@@ -19,7 +19,7 @@ function lastfmHandler(response) {
 		return;
 	}
 
-	if(response.lovedtracks.total == 0) {
+	if(response.lovedtracks.total === 0) {
 		showErrorMessage("This user doesn't have any loved tracks");
 		stopLoader();
 		return;
@@ -30,7 +30,7 @@ function lastfmHandler(response) {
 
 function parseLastfmTracks(tracks){
 	var lastfmTracks = new Array();
-	for(var i=0; i<tracks.length; i++)
+	for(var i=0; i < tracks.length; i++)
 		lastfmTracks.push({name: tracks[i].name, artist: tracks[i].artist.name});
 
 	return lastfmTracks;
