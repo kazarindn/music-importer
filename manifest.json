@@ -3,7 +3,7 @@
 		"en": "Imports songs as a Spotify playlist from different music services"
 	},
 	"AppIcon": {
-		"36x18": "tutorial.png"
+		"36x18": "/img/icon.png"
 	},
 	"AppName": {
 		"en": "Music Importer"
