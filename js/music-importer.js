@@ -5,7 +5,7 @@ var services = ['lastfm', 'deezer'];
 var serviceLinks = [];
 var loadedPlaylists = {};
 
-window.onload = function(){
+window.onload = function() {
 	for (var i = 0; i < services.length; i++) {
 		var script = sp.require('/js/' + services[i]);
 		serviceLinks.push(script);
@@ -26,7 +26,7 @@ window.onload = function(){
 	$('#import').click(startImport);
 };
 
-function showTip(id, tip, serviceName, userInput){
+function showTip(id, tip, serviceName, userInput) {
 	if ($('#'+id).is(':checked')) {
     	$('#tip').text(tip);
     	$('#import').text('Import from ' + serviceName);
@@ -34,7 +34,7 @@ function showTip(id, tip, serviceName, userInput){
     }
 }
 
-function startImport(){
+function startImport() {
 	var checked = $("input:checked");
 
 	resetPlaylist();
@@ -58,7 +58,7 @@ function validate()
 	return true;
 }
 
-function searchTrack(name, artist, playlist, id){
+function searchTrack(name, artist, playlist, id) {
 	var searchString = 'artist:"'+ artist +'" track:"'+ name +'"';
 	var search = new models.Search(searchString);
 	search.localResults = models.LOCALSEARCHRESULTS.APPEND;
@@ -81,12 +81,8 @@ function generateTemporaryPlaylist(tracks, playlistName, image) {
 	var list  = new views.List(tempPlayList);
 	var id = 'playlist_'+(new Date()).getTime();
 	loadedPlaylists[id] = [];
-	$('#playlists').append('<div class="playlist" hidden><div><table><tr><td><img width="150" height="150" src="'+image+'"><td class="playlist_title"><div><input class="hide" type="text" class="playlist-name" id="'+id+'_text" onblur="updatePlaylistName('+id+'_text)" /></div><text class="playlist-name show" id="'+id+'_name" onclick="editPlaylistName('+id+'_name)">'+playlistName+'</text></br><button class="button icon add-playlist" id="button_'+id+'" onclick="javascript:addNewPermanentPlaylist(\''+id+'\');"><span class="plus"></span>Add as Playlist</button></tr></table></div><div id="'+id+'" class="sp-list" style="max-height:none;"></div></div>');
+	$('#playlists').append('<div class="playlist" hidden><div><table><tr><td><img width="150" height="150" src="'+image+'"><td class="playlist_title"><div><input class="hide" type="text" class="playlist-name" id="'+id+'_text" onkeydown="if (event.keyCode == 13) 	updatePlaylistName('+id+'_text)" onblur="updatePlaylistName('+id+'_text)" /></div><text class="playlist-name show" id="'+id+'_name" onclick="editPlaylistName('+id+'_name)">'+playlistName+'</text></br><button class="button icon add-playlist" id="button_'+id+'" onclick="javascript:addNewPermanentPlaylist(\''+id+'\');"><span class="plus"></span>Add as Playlist</button></tr></table></div><div id="'+id+'" class="sp-list" style="max-height:none;"></div></div>');
 	$('#'+ id).append(list.node);
-	$(id+'_text').keypress(function (e) {
-	  if (e.which === 13)
-	    updatePlaylistName(id+'_text');
-	});
 
 	stopLoader();
 	for (var i = 0; i < tracks.length; i++)
@@ -118,7 +114,7 @@ function editPlaylistName(id) {
 	nameEditor.focus();
 }
 
-function addNewPermanentPlaylist(id){
+function addNewPermanentPlaylist(id) {
 	$('#button_'+id).hide();
 	setTimeout(function(){$('#button_'+id).show();}, 2000);
 	var tracks = loadedPlaylists[id];
@@ -127,27 +123,27 @@ function addNewPermanentPlaylist(id){
 		newPlaylist.add(tracks[i]);
 }
 
-function requestErrorHandler(){
+function requestErrorHandler() {
 	showErrorMessage("Something went wrong, try again later...");
 	stopLoader();
 }
 
-function startLoader(){
+function startLoader() {
 	$('#error').html('<div id="loader"></div>');
 }
 
-function stopLoader(){
+function stopLoader() {
 	$('#loader').remove();
 }
 
-function showErrorMessage(message){
+function showErrorMessage(message) {
 	$('#error').text(message);
 }
 
-function clearErrorMessage(){
+function clearErrorMessage() {
 	$('#error').text('');
 }
 
-function resetPlaylist(){
+function resetPlaylist() {
 	$('#playlists').text('');
 }
