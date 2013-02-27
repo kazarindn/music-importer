@@ -1,4 +1,4 @@
-body {
+body, input {
 	font-family: "Helvetica";
 	font-size: 14px;
 	color: white;
@@ -16,7 +16,14 @@ label {
 
 input {
 	background: transparent;
-	color: white;
+}
+
+.show {
+	display: block;
+}
+
+.hide {
+	display: none;
 }
 
 #header {
