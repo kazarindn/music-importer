@@ -76,17 +76,42 @@ function searchTrack(name, artist, playlist, id){
 	search.appendNext();
 }
 
-function generateTemporaryPlaylist(tracks, playlistName, image){
+function generateTemporaryPlaylist(tracks, playlistName, image) {
 	var tempPlayList = new models.Playlist();
 	var list  = new views.List(tempPlayList);
 	var id = 'playlist_'+(new Date()).getTime();
 	loadedPlaylists[id] = [];
-	$('#playlists').append('<div class="playlist" hidden><div><table><tr><td><img width="150" height="150" src="'+image+'"><td class="playlist_title"><text class="playlist-name" id="'+id+'_name">'+playlistName+'</text></br><button class="button icon add-playlist" id="button_'+id+'" onclick="javascript:addNewPermanentPlaylist(\''+id+'\');"><span class="plus"></span>Add as Playlist</button></tr></table></div><div id="'+id+'" class="sp-list" style="max-height:none;"></div></div>');
+	$('#playlists').append('<div class="playlist" hidden><div><table><tr><td><img width="150" height="150" src="'+image+'"><td class="playlist_title"><div><input hidden type="text" class="playlist-name" id="'+id+'_text" onclick="updatePlaylistNameOnEnter(event, '+id+'_text)" onblur="updatePlaylistName('+id+'_text)"></input></div><text class="playlist-name" id="'+id+'_name" onclick="editPlaylistName('+id+'_name)">'+playlistName+'</text></br><button class="button icon add-playlist" id="button_'+id+'" onclick="javascript:addNewPermanentPlaylist(\''+id+'\');"><span class="plus"></span>Add as Playlist</button></tr></table></div><div id="'+id+'" class="sp-list" style="max-height:none;"></div></div>');
 	$('#'+ id).append(list.node);
 
 	stopLoader();
 	for (var i = 0; i < tracks.length; i++)
 		searchTrack(tracks[i].name, tracks[i].artist, tempPlayList, id);
+}
+
+function updatePlaylistNameOnEnter(event, id){
+	if(event.keyCode == 13) {
+        updatePlaylistName(id);
+    }
+}
+
+function updatePlaylistName(id) {
+	var text = $(id).val();
+
+	if($.trim(text) !== '')
+		$(id).parent().next().text(text);
+
+	$(id).hide();
+	$(id).parent().next().show();
+}
+
+function editPlaylistName(id) {
+	var text = $(id).text();
+	var nameEditor = $(id).prev().children(":first");
+	nameEditor.val(text);
+	$(id).hide();
+	nameEditor.show();
+	nameEditor.focus();
 }
 
 function addNewPermanentPlaylist(id){
