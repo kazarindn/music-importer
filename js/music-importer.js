@@ -24,6 +24,7 @@ window.onload = function() {
 			if(this.src.toString().indexOf(serviceLinks[i].logo) > -1){
 				$("#user-control").children().remove();
 				$("#user-control").append(serviceLinks[i].html);
+				$('#username').watermark(serviceLinks[i].userInput);
 				selectedId = i;
 
 				break;

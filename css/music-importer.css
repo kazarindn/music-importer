@@ -87,6 +87,10 @@ hr {
 	height: 120px;
 }
 
+input::-webkit-input-placeholder {
+      text-align: center;
+}	
+
 #playlists {
 	margin-top: -20px;
 }
