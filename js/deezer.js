@@ -2,16 +2,14 @@ exports.name = "Deezer";
 exports.userInput = "Profile ID";
 exports.logo = "/img/deezerlogo.png";
 var tip = "deezer.com/profile/XXXXXXXX";
-exports.html = '<input id="username" type="text"><div class="tip">'+ tip +'</div><text id="error"></text><br/><button class="sp-button sp-primary" type="button" id="import">Start import</button>';
+exports.html = '<input id="username" type="text"><div class="tip">'+ tip +'</div><text id="error"></text><br/><button type="button" id="import">IMPORT PLAYLISTS</button>';
 exports.importData = importData;
 
-function importData(username){
-	console.log('Importing from Deezer...');
-
+function importData(username) {
 	$.get("http://api.deezer.com/2.0/user/"+username+"/playlists", deezerUserRequestHandler, "json").fail(requestErrorHandler);
 }
 
-function deezerUserRequestHandler(response){
+function deezerUserRequestHandler(response) {
 	if(typeof response.data == "undefined" || response.total === 0){
 		showErrorMessage("This user doesn't have any playlists");
 		stopLoader();

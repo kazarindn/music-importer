@@ -1,7 +1,7 @@
 var sp = getSpotifyApi();
 var models = sp.require('$api/models');
 var views = sp.require('$api/views');
-var services = ['deezer', 'lastfm', 'deezer'];
+var services = ['deezer', 'lastfm'];
 var serviceLinks = [];
 var loadedPlaylists = {};
 var selectedId = 0;
@@ -10,7 +10,6 @@ window.onload = function() {
 	for (var i = 0; i < services.length; i++) {
 		var script = sp.require('/js/' + services[i]);
 		serviceLinks.push(script);
-		console.log('Script added: ' + services[i]);
 		$('#services').append('<div class="service"><hr hidden/><img class="darken" width="160" height="100" src="'+ script.logo + '"/></div>');
 	};
 
@@ -20,8 +19,8 @@ window.onload = function() {
 		$(this).parent().children("hr").show();
 
 		var id = 0;
-		for(var i=0; i< serviceLinks.length; i++){
-			if(this.src.toString().indexOf(serviceLinks[i].logo) > -1){
+		for(var i=0; i< serviceLinks.length; i++) {
+			if(this.src.toString().indexOf(serviceLinks[i].logo) > -1) {
 				$("#user-control").children().remove();
 				$("#user-control").append(serviceLinks[i].html);
 				$('#username').watermark(serviceLinks[i].userInput);
@@ -75,7 +74,7 @@ function searchTrack(name, artist, playlist, id) {
 	search.localResults = models.LOCALSEARCHRESULTS.APPEND;
 
 	search.observe(models.EVENT.CHANGE, function() {
-		if(search.tracks.length !== 0){
+		if(search.tracks.length !== 0) {
 			if($('#' +id).parent().is(':hidden') === true)
 				$('#'+id).parent().show();
 			var track = search.tracks[0];
@@ -127,7 +126,7 @@ function editPlaylistName(id) {
 
 function addNewPermanentPlaylist(id) {
 	$('#button_'+id).hide();
-	setTimeout(function(){$('#button_'+id).show();}, 2000);
+	setTimeout(function() { $('#button_'+id).show(); }, 2000);
 	var tracks = loadedPlaylists[id];
 	var newPlaylist = new models.Playlist($('#'+id+'_name').text());
 	for (var i = 0; i < tracks.length; i++)
@@ -140,7 +139,7 @@ function requestErrorHandler() {
 }
 
 function startLoader() {
-	$('#error').html('<div id="loader"></div>');
+	$('#progress').html('<div id="loader"></div>');
 }
 
 function stopLoader() {
