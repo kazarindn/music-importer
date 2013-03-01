@@ -10,13 +10,14 @@ window.onload = function() {
 	for (var i = 0; i < services.length; i++) {
 		var script = sp.require('/js/' + services[i]);
 		serviceLinks.push(script);
-		$('#services').append('<div class="service"><hr hidden/><img class="darken" width="160" height="100" src="'+ script.logo + '"/></div>');
+		$('#services').append('<div class="service"><img class="darken" width="160" height="100" src="'+ script.logo + '"/><div class="hr" hidden><hr/></div></div>');
 	};
 
 	$('.darken').click(function() {
 		clearErrorMessage();
-		$('hr').hide();
-		$(this).parent().children("hr").show();
+		$('.hr').hide();
+		$(this).parent().children(".hr").show();
+		$(this).fadeTo(300, 1);
 
 		var id = 0;
 		for(var i=0; i< serviceLinks.length; i++) {
@@ -38,12 +39,14 @@ window.onload = function() {
 			
 	});
 	$('.darken').hover(function() {
+		if($(this).next(".hr:hidden").size() !== 1) return;
+
     	$(this).fadeTo(500, 0.5);
 	}, function() {
-	    $(this).fadeTo(500, 1);
+	    $(this).fadeTo(300, 1);
 	});
 
-	$('hr:hidden').first().next().click();
+	$('.hr:hidden').first().prev().click();
 };
 
 function startImport() {
