@@ -19,6 +19,10 @@ input {
 	background: transparent;
 }
 
+input::-webkit-input-placeholder {
+      text-align: center;
+}	
+
 hr {
 	background:#7ab800; 
 	border:0; 
@@ -74,7 +78,7 @@ hr {
 }
 
 
-#user-control, #error, #tip {
+#user-control, #error {
 	text-align: center;
 	margin-top: 10px;
 }
@@ -87,12 +91,14 @@ hr {
 	height: 120px;
 }
 
-input::-webkit-input-placeholder {
-      text-align: center;
-}	
-
 #playlists {
 	margin-top: -20px;
+}
+
+.tip {
+	font-size: 12px;
+	margin-top: 3px;
+	margin-bottom: 3px;
 }
 
 .playlist-name {

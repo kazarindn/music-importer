@@ -1,8 +1,8 @@
 exports.name = "Deezer";
-exports.userInput = "User ID";
-exports.tip = "e.g. 19477031 in http://www.deezer.com/en/profile/19477031";
+exports.userInput = "Profile ID";
 exports.logo = "/img/deezerlogo.png";
-exports.html = '<input id="username" type="text"><button class="sp-button sp-primary" type="button" id="import">Start import</button>'
+var tip = "deezer.com/profile/XXXXXXXX";
+exports.html = '<input id="username" type="text"><div class="tip">'+ tip +'</div><text id="error"></text><br/><button class="sp-button sp-primary" type="button" id="import">Start import</button>';
 exports.importData = importData;
 
 function importData(username){

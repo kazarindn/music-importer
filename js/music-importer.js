@@ -11,11 +11,11 @@ window.onload = function() {
 		var script = sp.require('/js/' + services[i]);
 		serviceLinks.push(script);
 		console.log('Script added: ' + services[i]);
-		//$('#services').append('<label for="' +services[i]+ '"><input class="service" id="' +services[i]+ '" type="radio" name="service" value="' +script.name+ '" onchange="javascript:showTip(\''+services[i]+'\',\''+script.tip+'\',\''+script.name+'\',\''+script.userInput+'\');"></input>' +script.name+ '</label>');
 		$('#services').append('<div class="service"><hr hidden/><img class="darken" width="160" height="100" src="'+ script.logo + '"/></div>');
 	};
 
 	$('.darken').click(function() {
+		clearErrorMessage();
 		$('hr').hide();
 		$(this).parent().children("hr").show();
 
@@ -44,20 +44,8 @@ window.onload = function() {
 	    $(this).fadeTo(500, 1);
 	});
 
-	//set default values
-	// $('#' + services[0]).attr('checked', true);
-	// showTip(services[0], serviceLinks[0].tip, serviceLinks[0].name, serviceLinks[0].userInput);
-
 	$('hr:hidden').first().next().click();
 };
-
-// function showTip(id, tip, serviceName, userInput) {
-// 	if ($('#'+id).is(':checked')) {
-//     	$('#tip').text(tip);
-//     	$('#import').text('Import from ' + serviceName);
-//     	$('#title').text(userInput);
-//     }
-// }
 
 function startImport() {
 	resetPlaylist();
@@ -75,7 +63,7 @@ function validate()
 	if(!document.getElementById('username').value 
 		|| $.trim(document.getElementById('username').value).length == 0)
 	{
-		showErrorMessage("Input field is empty");
+		showErrorMessage(serviceLinks[selectedId].userInput + " is empty");
 		return false;
 	}
 	return true;

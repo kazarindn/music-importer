@@ -1,8 +1,9 @@
 exports.name = 'last.fm';
 exports.userInput = "Username";
-exports.tip = "e.g. kazarindn in http://www.last.fm/user/kazarindn";
+exports.tip = "last.fm/user/XXXXXXXX";
 exports.logo = "/img/lastfmlogo.png";
-exports.html = '<input id="username" type="text"><button class="sp-button sp-primary" type="button" id="import">Start import</button>'
+var tip = "last.fm/user/XXXXXXXX";
+exports.html = '<input id="username" type="text"><div class="tip">'+ tip +'</div><text id="error"></text><br/><button class="sp-button sp-primary" type="button" id="import">Start import</button>';
 exports.importData = importData;
 
 var lastfmApiKey = "152353e5ff3561e1d1772715194945ee";
