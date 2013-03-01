@@ -1,49 +1,71 @@
 var sp = getSpotifyApi();
 var models = sp.require('$api/models');
 var views = sp.require('$api/views');
-var services = ['lastfm', 'deezer'];
+var services = ['deezer', 'lastfm', 'deezer'];
 var serviceLinks = [];
 var loadedPlaylists = {};
+var selectedId = 0;
 
 window.onload = function() {
 	for (var i = 0; i < services.length; i++) {
 		var script = sp.require('/js/' + services[i]);
 		serviceLinks.push(script);
 		console.log('Script added: ' + services[i]);
-		$('#header').append('<label for="' +services[i]+ '"><input class="service" id="' +services[i]+ '" type="radio" name="service" value="' +script.name+ '" onchange="javascript:showTip(\''+services[i]+'\',\''+script.tip+'\',\''+script.name+'\',\''+script.userInput+'\');"></input>' +script.name+ '</label>');
-		
+		//$('#services').append('<label for="' +services[i]+ '"><input class="service" id="' +services[i]+ '" type="radio" name="service" value="' +script.name+ '" onchange="javascript:showTip(\''+services[i]+'\',\''+script.tip+'\',\''+script.name+'\',\''+script.userInput+'\');"></input>' +script.name+ '</label>');
+		$('#services').append('<div class="service"><hr hidden/><img class="darken" width="160" height="100" src="'+ script.logo + '"/></div>');
 	};
 
-	$('#username').keypress(function (e) {
-	  if (e.which === 13)
-	    startImport();
+	$('.darken').click(function() {
+		$('hr').hide();
+		$(this).parent().children("hr").show();
+
+		var id = 0;
+		for(var i=0; i< serviceLinks.length; i++){
+			if(this.src.toString().indexOf(serviceLinks[i].logo) > -1){
+				$("#user-control").children().remove();
+				$("#user-control").append(serviceLinks[i].html);
+				selectedId = i;
+
+				break;
+			}
+		}
+
+		$('#import').click(startImport);
+		$('#username').keypress(function (e) {
+		  if (e.which === 13)
+		    startImport();
+		});
+			
+	});
+	$('.darken').hover(function() {
+    	$(this).fadeTo(500, 0.5);
+	}, function() {
+	    $(this).fadeTo(500, 1);
 	});
 
 	//set default values
-	$('#' + services[0]).attr('checked', true);
-	showTip(services[0], serviceLinks[0].tip, serviceLinks[0].name, serviceLinks[0].userInput);
+	// $('#' + services[0]).attr('checked', true);
+	// showTip(services[0], serviceLinks[0].tip, serviceLinks[0].name, serviceLinks[0].userInput);
 
-	$('#import').click(startImport);
+	$('hr:hidden').first().next().click();
 };
 
-function showTip(id, tip, serviceName, userInput) {
-	if ($('#'+id).is(':checked')) {
-    	$('#tip').text(tip);
-    	$('#import').text('Import from ' + serviceName);
-    	$('#title').text(userInput);
-    }
-}
+// function showTip(id, tip, serviceName, userInput) {
+// 	if ($('#'+id).is(':checked')) {
+//     	$('#tip').text(tip);
+//     	$('#import').text('Import from ' + serviceName);
+//     	$('#title').text(userInput);
+//     }
+// }
 
 function startImport() {
-	var checked = $("input:checked");
-
 	resetPlaylist();
 	loadedPlaylists = {};
 	if(validate() === false) return;
 	
 	startLoader();
 
-	serviceLinks[services.indexOf(checked[0].id)].importData($('#username').val());
+	serviceLinks[selectedId].importData($('#username').val());
 }
 
 function validate()

@@ -1,6 +1,8 @@
 exports.name = "Deezer";
 exports.userInput = "User ID";
 exports.tip = "e.g. 19477031 in http://www.deezer.com/en/profile/19477031";
+exports.logo = "/img/deezerlogo.png";
+exports.html = '<text id="title">Username</text><input id="username" type="text"><button class="sp-button sp-primary" type="button" id="import">Start import</button>'
 exports.importData = importData;
 
 function importData(username){
@@ -10,7 +12,7 @@ function importData(username){
 }
 
 function deezerUserRequestHandler(response){
-	if(response.total === 0){
+	if(typeof response.data == "undefined" || response.total === 0){
 		showErrorMessage("This user doesn't have any playlists");
 		stopLoader();
 		return;
