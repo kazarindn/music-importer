@@ -18,7 +18,8 @@
   },"RequiredInterface": 1,
 	"RequiredPermissions": [
 	    "http://ws.audioscrobbler.com/",
-	    "http://api.deezer.com/"
+	    "http://api.deezer.com/",
+	    "http://mog.com"
 	],
 	"SupportedLanguages": [
 		"en"

@@ -1,4 +1,3 @@
-exports.name = 'last.fm';
 exports.userInput = "Username";
 exports.tip = "last.fm/user/XXXXXXXX";
 exports.logo = "/img/lastfmlogo.png";

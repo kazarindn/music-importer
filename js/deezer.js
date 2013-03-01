@@ -1,4 +1,3 @@
-exports.name = "Deezer";
 exports.userInput = "Profile ID";
 exports.logo = "/img/deezerlogo.png";
 var tip = "deezer.com/profile/XXXXXXXX";

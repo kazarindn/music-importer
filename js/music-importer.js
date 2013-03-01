@@ -1,7 +1,7 @@
 var sp = getSpotifyApi();
 var models = sp.require('$api/models');
 var views = sp.require('$api/views');
-var services = ['deezer', 'lastfm'];
+var services = ['deezer', 'lastfm', 'mog'];
 var serviceLinks = [];
 var loadedPlaylists = {};
 var selectedId = 0;
