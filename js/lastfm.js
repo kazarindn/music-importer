@@ -13,7 +13,7 @@ function importData(username) {
 }
 
 function lastfmHandler(response) {
-	if(typeof response.error !== "undefined" && typeof response.lovedtracks.total !== "undefined") {
+	if(typeof response.error !== "undefined" || response.lovedtracks.total !== "undefined") {
 		showErrorMessage("Something went wrong, try again later");
 		stopLoader();
 		return;
