@@ -47,9 +47,11 @@ window.onload = function() {
 	});
 
 	$('.hr:hidden').first().prev().click();
+	$('#addAll').click(addAllPlaylists);
 };
 
 function startImport() {
+	$(".add_all_playlists").hide();
 	resetPlaylist();
 	loadedPlaylists = {};
 	if(validate() === false) return;
@@ -127,6 +129,20 @@ function editPlaylistName(id) {
 	nameEditor.focus();
 }
 
+function addAllPlaylists() {
+	$('#addAll').css('visibility','hidden');
+	setTimeout(function() { $('#addAll').css('visibility','visible'); }, 2000);
+
+	var playlists = $('#playlists').children(".playlist");
+	for(var i=0; i < playlists.length; i++) {
+		var children = playlists[i].children;
+		var playlist = children[children.length-1];
+		if(playlist.hidden === true) continue;
+
+    	addNewPermanentPlaylist(playlist.id);
+	}
+}
+
 function addNewPermanentPlaylist(id) {
 	$('#button_'+id).hide();
 	setTimeout(function() { $('#button_'+id).show(); }, 2000);
@@ -147,6 +163,7 @@ function startLoader() {
 
 function stopLoader() {
 	$('#loader').remove();
+	$('.add_all_playlists:hidden').show();
 }
 
 function showErrorMessage(message) {

@@ -61,7 +61,7 @@ hr {
 }
 
 #playlists {
-	margin-top: -20px;
+	margin-top: -30px;
 }
 
 #error {
@@ -125,6 +125,10 @@ hr {
 
 .playlist_title {
 	vertical-align: top;
+}
+
+.add_all_playlists {
+	margin: 5px 0px 0px 10px;
 }
 
 .add-playlist {
