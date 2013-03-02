@@ -163,7 +163,8 @@ function startLoader() {
 
 function stopLoader() {
 	$('#loader').remove();
-	$('.add_all_playlists:hidden').show();
+	if(!$('#error').text().length)
+		$('.add_all_playlists:hidden').show();
 }
 
 function showErrorMessage(message) {
