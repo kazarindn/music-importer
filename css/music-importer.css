@@ -1,7 +1,11 @@
+html {
+	background-image: url(/img/background.png);
+}
+
 body, input {
-	font-family: "Helvetica";
+	font-family: "Arial";
 	font-size: 14px;
-	color: white;
+	color: #999999;
 }
 
 img {
@@ -16,7 +20,10 @@ label {
 }
 
 input {
-	background: transparent;
+	background-color: #fff;
+	border: 1px solid #e4e4e4;
+	-webkit-border-radius: 2px;
+	color: #878787;
 }
 
 input::-webkit-input-placeholder {
@@ -39,7 +46,7 @@ hr {
 }
 
 #import {
-	background-color: #82b919; 
+	background: -webkit-linear-gradient(270deg ,#939294 0% ,#686768 81%); 
 	border-radius: 5px;
 	border: 0px;
 	color: white;
@@ -69,6 +76,15 @@ hr {
 	margin-top: 5px;
 }
 
+.sp-list > div {
+	background-image: -webkit-linear-gradient(#FFF, #FFF 50%, #DDD 50%, #DDD) !important;
+	background-color: none !important;
+}
+
+.sp-track > span {
+	color: black !important;
+}
+
 .show {
 	display: block;
 }
@@ -78,7 +94,7 @@ hr {
 }
 
 .header_title {
-	font-size: 20px;
+	font-size: 21px;
 }
 
 .service {
