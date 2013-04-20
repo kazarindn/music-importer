@@ -12,6 +12,11 @@ function mogUserRequestHandler(data) {
     var result = {};
     var match;
     match = data.match('<meta property="og:title" content="([^"]+)" />');
+    if(match === null) {
+        showErrorMessage("Something went wrong, try again later");
+        stopLoader();       
+        return;
+    }
     result.title = match[1];
     match = data.match('meta property="og:image" content="([^"]+)" />');
     result.picture = match[1];

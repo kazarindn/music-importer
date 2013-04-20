@@ -1,16 +1,20 @@
 {
 	"AppDescription": {
-		"en": "Imports songs as a Spotify playlist from DEEZER, MOG and last.fm (loved tracks)"
+		"en": "Imports songs as Spotify playlists from DEEZER, MOG and last.fm (loved tracks)"
 	},
 	"AppIcon": {
-		"18x18": "/img/icon.png"
+		"36x18": "/img/icon36.png",
+		"64x64": "/img/icon64.png",
+		"128x128": "/img/icon128.png",
+		"300x300": "/img/icon300.png"
 	},
+	"AppURL": "https://github.com/kazarindn/music-importer",
 	"AppName": {
 		"en": "Music Importer"
 	},
 	"BundleIdentifier": "music-importer",
 	"BundleType": "Application",
-	"BundleVersion": "1",
+	"BundleVersion": "1.0.0",
 	"Dependencies": {
 	  "api": "0.2.3",
 	  "util": "0.1.0",
