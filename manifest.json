@@ -5,8 +5,7 @@
 	"AppIcon": {
 		"36x18": "/img/icon36.png",
 		"64x64": "/img/icon64.png",
-		"128x128": "/img/icon128.png",
-		"300x300": "/img/icon300.png"
+		"128x128": "/img/icon128.png"
 	},
 	"AppURL": "https://github.com/kazarindn/music-importer",
 	"AppName": {
