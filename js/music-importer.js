@@ -5,6 +5,12 @@ var services = ['deezer', 'lastfm', 'mog'];
 var serviceLinks = [];
 var loadedPlaylists = {};
 var selectedId = 0;
+var frameWidth = 30;
+var frameHeight = 30;
+var spriteWidth = 360;
+var spriteHeight = 30;
+var curPx = 0;
+var ti;
 
 window.onload = function() {
 	for (var i = 0; i < services.length; i++) {
@@ -157,8 +163,21 @@ function requestErrorHandler() {
 	stopLoader();
 }
 
+function animateSprite() {
+	if(document.getElementById("loader") === null) return;
+	document.getElementById("loader").style.backgroundPosition = curPx + 'px 0px';
+	curPx = curPx + frameWidth;
+	 
+	if (curPx >= spriteWidth) {
+	curPx = 0;
+	}
+	 
+	ti = setTimeout(animateSprite, 80);
+}
+
 function startLoader() {
 	$('#progress').html('<div id="loader"></div>');
+	animateSprite();
 }
 
 function stopLoader() {
