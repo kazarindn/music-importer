@@ -165,7 +165,7 @@ function requestErrorHandler() {
 
 function animateSprite() {
 	if(document.getElementById("loader") === null) return;
-	document.getElementById("loader").style.backgroundPosition = curPx + 'px 0px';
+	document.getElementById("loader").style.backgroundPosition = '-' + curPx + 'px 0px';
 	curPx = curPx + frameWidth;
 	 
 	if (curPx >= spriteWidth) {
