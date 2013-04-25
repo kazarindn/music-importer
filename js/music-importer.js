@@ -1,7 +1,7 @@
 var sp = getSpotifyApi();
 var models = sp.require('$api/models');
 var views = sp.require('$api/views');
-var services = ['deezer', 'lastfm', 'mog'];
+var services = ['deezer', 'lastfm', 'mog', 'doubanfm'];
 var serviceLinks = [];
 var loadedPlaylists = {};
 var selectedId = 0;
@@ -31,6 +31,7 @@ window.onload = function() {
 				$("#user-control").children().remove();
 				$("#user-control").append(serviceLinks[i].html);
 				$('#username').watermark(serviceLinks[i].userInput);
+        $('#password').watermark(serviceLinks[i].userPassword);
 				selectedId = i;
 
 				break;
