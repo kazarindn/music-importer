@@ -65,7 +65,7 @@ function startImport() {
 	
 	startLoader();
 
-	serviceLinks[selectedId].importData($('#username').val());
+	serviceLinks[selectedId].importData($('#username').val(), $('#password').val());
 }
 
 function validate()
