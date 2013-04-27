@@ -16,7 +16,25 @@ function parseLoginInfo(response) {
     return;
   }
   
-$.get("http://www.douban.com/j/app/radio/liked_songs?version=608&client=s:mobile|y:android+4.1.1|f:608|m:Google|d:-1178839463|e:google_galaxy_nexus&app_name=radio_android&from=android_608_Google&token=" + response.token + "&user_id=" + response.user_id + "&expire=" + response.expire).fail(requestErrorHandler);
+$.get("http://www.douban.com/j/app/radio/liked_songs?version=608&client=s:mobile|y:android+4.1.1|f:608|m:Google|d:-1178839463|e:google_galaxy_nexus&app_name=radio_android&from=android_608_Google&token=" + response.token + "&user_id=" + response.user_id + "&expire=" + response.expire, doubanFMHandler).fail(requestErrorHandler);
+}
 
-stopLoader();
+function doubanFMHandler(response) {
+	if(response.r != "0") {
+		showErrorMessage("Something went wrong, try again later");
+		stopLoader();
+		return;
+	}
+  
+  var tracks = parseDoubanfmTracks(response.songs)
+	generateTemporaryPlaylist(tracks, 'douban.fm - Liked Tracks', "/img/lastfm.png");	
+}
+
+function parseDoubanfmTracks(tracks) {
+  var resultTracks = new Array();
+  for(var i=0; i<tracks.length; i++) {
+    resultTracks.push({name: tracks[i].title, artist: tracks[i].artist});
+  }
+  
+  return resultTracks;
 }
