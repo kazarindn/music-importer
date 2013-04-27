@@ -16,7 +16,7 @@ function parseLoginInfo(response) {
     return;
   }
   
-$.get("http://www.douban.com/j/app/radio/liked_songs?version=608&client=s:mobile|y:android+4.1.1|f:608|m:Google|d:-1178839463|e:google_galaxy_nexus&app_name=radio_android&from=android_608_Google&token=" + response.token + "&user_id=" + response.user_id + "&expire=" + response.expire, doubanFMHandler).fail(requestErrorHandler);
+$.get("http://www.douban.com/j/app/radio/liked_songs?version=608&client=s:mobile|y:android+4.1.1|f:608|m:Google|d:-1178839463|e:google_galaxy_nexus&app_name=radio_android&from=android_608_Google&count=100000&token=" + response.token + "&user_id=" + response.user_id + "&expire=" + response.expire, doubanFMHandler).fail(requestErrorHandler);
 }
 
 function doubanFMHandler(response) {
