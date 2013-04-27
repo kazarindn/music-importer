@@ -26,6 +26,12 @@ function doubanFMHandler(response) {
 		return;
 	}
   
+	if(response.songs.length == 0) {
+		showErrorMessage("This user doesn't have any loved tracks");
+		stopLoader();
+		return;
+	}
+  
   var tracks = parseDoubanfmTracks(response.songs)
 	generateTemporaryPlaylist(tracks, 'douban.fm - Liked Tracks', "/img/lastfm.png");	
 }
